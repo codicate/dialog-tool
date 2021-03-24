@@ -6,11 +6,7 @@ body {
   background-color: #06090f;
 }
 
-#tpl-div {
-  display: none;
-}
-
-#canvas {
+#root {
   position: absolute;
 }
 
@@ -57,6 +53,7 @@ button:active {
 }
 
 .card {
+  position: absolute;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -71,7 +68,6 @@ button:active {
 }
 
 .dialog {
-  position: relative;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
