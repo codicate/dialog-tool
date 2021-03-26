@@ -1,21 +1,22 @@
 import './App.css';
 
-import Dialog from './components/dialog';
-import Card from './components/card';
+import Dialog from './components/Dialog';
+import Card from './components/Card';
 import { useEffect, useRef } from 'react';
-import { useZoom } from './hooks/transform';
+import useZoom from './hooks/useZoom';
 
 function App() {
-  useEffect(() => {
-    console.log(useZoom)
-  }, []);
+
+  const canvas = useRef();
+  console.log(canvas.current)
+  const scale = useZoom(document.body, canvas);
 
   return (
-    <>
+    <div id='canvas' ref={canvas}>
       <Dialog
         type='response'
       />
-    </>
+    </div>
   );
 }
 
