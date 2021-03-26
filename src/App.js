@@ -1,9 +1,9 @@
-import './App.css';
+import 'App.css';
 
-import Dialog from './components/Dialog';
-import Card from './components/Card';
+import Dialog from 'components/Dialog';
+import Card from 'components/Card';
 import { useEffect, useRef } from 'react';
-import useZoom from './hooks/useZoom';
+import useZoom from 'hooks/useZoom';
 
 function App() {
 
