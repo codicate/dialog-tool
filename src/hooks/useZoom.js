@@ -4,9 +4,11 @@ import getElement from 'functions/getElement';
 const useZoom = (
   eventTarget,
   movingTarget = eventTarget,
-  zoomSpeed = 0.05,
-  minScale = 0.125,
-  maxScale = 4
+  {
+    zoomSpeed = 0.05,
+    minScale = 0.125,
+    maxScale = 4
+  } = {}
 
 ) => {
 
@@ -32,7 +34,10 @@ const useZoom = (
     pos.x = -target.x * scale + pointer.x;
     pos.y = -target.y * scale + pointer.y;
 
-    movingElement.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${scale})`;
+    movingElement.style.transform = `
+      translate(${pos.x}px, ${pos.y}px) 
+      scale(${scale})
+    `;
   });
 
   return scale;
