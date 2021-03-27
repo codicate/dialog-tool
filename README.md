@@ -1,5 +1,3 @@
 # Dialog-Tool
 
-
-
-[Live](https://codicate.github.io/game-proto/dialog-tool-test/dialog.html)
+[Live](https://codicate.github.io/dialog-tool/)
