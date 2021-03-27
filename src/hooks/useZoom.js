@@ -1,42 +1,41 @@
-import { useEffect, useState } from "react";
+import useEventListener from 'hooks/useEventListener';
+import getElement from 'functions/getElement';
 
 const useZoom = (
-
-  targetElement,
-  movingElement = targetElement,
+  eventTarget,
+  movingTarget = eventTarget,
   zoomSpeed = 0.05,
   minScale = 0.125,
   maxScale = 4
 
 ) => {
-  console.log(targetElement);
-  console.log(movingElement);
 
-  const getViewportWidth = () => {
-    let e = window,
-      a = "inner";
-    if (!("innerWidth" in window)) {
-      a = "client";
-      e = document.documentElement || document.body;
-    }
-    return e[a + "Width"];
-  };
+  let scale = 1;
+  let pointer = { x: 0, y: 0 };
+  let target = { x: 0, y: 0 };
+  let pos = { x: 0, y: 0 };
 
-  const [viewportWidth, setViewportWidth] = useState(getViewportWidth())
+  useEventListener(eventTarget, 'wheel', (e) => {
+    const movingElement = getElement(movingTarget);
 
-  useEffect(() => {
-    // We're going to create an 'onResize' event handler which will update our state
-    const setFromEvent = () => setViewportWidth(getViewportWidth());
-    
-    // Add an event listener for resize, which will update our state
-    window.addEventListener('resize', setFromEvent)
-    
-    //Finally, remember to unbind the event listener on unmount
-    return () => {
-      window.removeEventListner('resize', setFromEvent)
-    }
-  }, []); // Empty parentheses will cause this to run once at mount
+    pointer.x = e.clientX - movingElement.offsetLeft;
+    pointer.y = e.clientY - movingElement.offsetTop;
 
+    target.x = (pointer.x - pos.x) / scale;
+    target.y = (pointer.y - pos.y) / scale;
+
+    scale = Math.min(Math.max(
+      scale + Math.sign(e.deltaY) * -zoomSpeed,
+      minScale), maxScale
+    );
+
+    pos.x = -target.x * scale + pointer.x;
+    pos.y = -target.y * scale + pointer.y;
+
+    movingElement.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${scale})`;
+  });
+
+  return scale;
 };
 
 export default useZoom;

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
+import getElement from 'functions/getElement';
 
-const useEventListener = (target, eventType, handler, options = {}) => {
+const useEventListener = (eventTarget, eventType, handler, options = {}) => {
   const savedHandler = useRef();
 
   useEffect(() => {
@@ -8,17 +9,14 @@ const useEventListener = (target, eventType, handler, options = {}) => {
   }, [handler]);
 
   useEffect(() => {
-    const element = target.hasOwnProperty("current")
-      ? target.current
-      : target;
-
+    const element = getElement(eventTarget);
     if (!element || !element.addEventListener) return;
 
     const eventListener = (event) => savedHandler.current(event);
     element.addEventListener(eventType, eventListener, options);
 
     return () => element.removeEventListener(eventType, eventListener, options);
-  }, [target, eventType, handler, options]);
+  }, [eventTarget, eventType, handler, options]);
 };
 
 export default useEventListener;

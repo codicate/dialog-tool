@@ -8,8 +8,8 @@ import useZoom from 'hooks/useZoom';
 function App() {
 
   const canvas = useRef();
-  console.log(canvas.current)
   const scale = useZoom(document.body, canvas);
+  console.log(scale);
 
   return (
     <div id='canvas' ref={canvas}>
