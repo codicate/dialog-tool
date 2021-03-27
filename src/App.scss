@@ -69,6 +69,10 @@ button {
   &:hover {
     box-shadow: 0 0 0 0.25em $border-hover-color;
   }
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 .dialog {

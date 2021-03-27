@@ -1,4 +1,4 @@
-import 'App.css';
+import 'App.scss';
 
 import Dialog from 'components/Dialog';
 import Card from 'components/Card';
