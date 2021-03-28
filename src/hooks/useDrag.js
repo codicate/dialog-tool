@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import getRefCurrent from '../functions/getRefCurrent';
-import useEventListener from './useEventListener';
+import getRefCurrent from 'functions/getRefCurrent';
+import useEventListener from 'hooks/useEventListener';
 
 const useDrag = (
   eventTarget,
@@ -15,9 +15,10 @@ const useDrag = (
 
   useEventListener(eventTarget, 'mousedown', (e) => {
     e.stopPropagation();
+    dragable.current = true;
 
     const movingElement = getRefCurrent(movingTarget);
-    dragable.current = true;
+    movingElement.style.zIndex = movingElement.style.zIndex + 1;
 
     pos.current = {
       x: e.clientX / scale.current,
