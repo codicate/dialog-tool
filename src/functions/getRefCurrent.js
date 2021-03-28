@@ -1,9 +1,7 @@
-//Return the current property of a ref if it is a ref
-
-const getElement = (element) => {
-  return element.hasOwnProperty("current")
-    ? element.current
-    : element;
+const getRefCurrent = (ref) => {
+  return ref.hasOwnProperty("current")
+    ? ref.current
+    : ref;
 };
 
-export default getElement;
+export default getRefCurrent;

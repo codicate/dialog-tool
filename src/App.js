@@ -1,8 +1,8 @@
 import 'App.scss';
 
 import Dialog from 'components/Dialog';
-import Card from 'components/Card';
-import { useEffect, useRef } from 'react';
+// import Card from 'components/Card';
+import {useRef } from 'react';
 import useZoom from 'hooks/useZoom';
 import useDrag from 'hooks/useDrag';
 
