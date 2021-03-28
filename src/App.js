@@ -4,19 +4,34 @@ import Dialog from 'components/Dialog';
 import Card from 'components/Card';
 import { useEffect, useRef } from 'react';
 import useZoom from 'hooks/useZoom';
+import useDrag from 'hooks/useDrag';
 
 function App() {
-
-  const canvas = useRef();
+  const canvas = useRef(null);
   const scale = useZoom(document.body, canvas);
-  console.log(scale);
+  useDrag(document.body, canvas);
 
   return (
-    <div id='canvas' ref={canvas}>
-      <Dialog
-        type='response'
-      />
-    </div>
+    <>
+      <div id='canvas' ref={canvas}>
+        <Dialog
+          scale={scale}
+          type='response'
+        />
+        <Dialog
+          scale={scale}
+          type='response'
+        />
+        <Dialog
+          scale={scale}
+          type='response'
+        />
+        <Dialog
+          scale={scale}
+          type='response'
+        />
+      </div>
+    </>
   );
 }
 

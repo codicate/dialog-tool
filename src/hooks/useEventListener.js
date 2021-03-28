@@ -12,10 +12,10 @@ const useEventListener = (eventTarget, eventType, handler, options = {}) => {
     const element = getElement(eventTarget);
     if (!element || !element.addEventListener) return;
 
-    const eventListener = (event) => savedHandler.current(event);
-    element.addEventListener(eventType, eventListener, options);
+    const listener = (event) => savedHandler.current(event);
+    element.addEventListener(eventType, listener, options);
 
-    return () => element.removeEventListener(eventType, eventListener, options);
+    return () => element.removeEventListener(eventType, listener, options);
   }, [eventTarget, eventType, handler, options]);
 };
 

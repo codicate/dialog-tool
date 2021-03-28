@@ -14,9 +14,18 @@ body {
 
   color: $txt-color;
   background-color: $bg-color;
+
+  &:active {
+    cursor: move;
+  }
 }
 
 #root {
+  height: 100%;
+  width: 100%;
+}
+
+#canvas {
   position: absolute;
 }
 
@@ -35,9 +44,11 @@ button {
 
   cursor: pointer;
   outline: none;
+
   border-radius: 10px;
   border: 1px solid $border-color;
   background-color: $btn-color;
+
   transition: 0.2s cubic-bezier(.3, 0, .5, 1);
 
   .material-icons {
@@ -62,7 +73,6 @@ button {
 
 .card {
   position: absolute;
-
   user-select: none;
   cursor: grab;
 
@@ -84,7 +94,6 @@ button {
   align-items: flex-start;
 
   width: 25em;
-
   padding: 1.5em 2em;
 
   color: $txt-color;
@@ -113,7 +122,6 @@ button {
   align-items: center;
 
   width: fit-content;
-
   padding: 1em;
 
   border-radius: 1em;
@@ -133,12 +141,10 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-
   height: 100%;
 
   display: grid;
   grid-template: 1fr 1fr / 1fr;
-
   border-radius: inherit;
 
   button {
@@ -157,11 +163,12 @@ button {
 }
 
 #dialog-edit {
+  width: 100%;
+
   resize: none;
   overflow-y: hidden;
   color: inherit;
   background-color: inherit;
-  width: 100%;
   border: none;
 }
 
@@ -177,7 +184,6 @@ button {
   align-items: center;
 
   padding: 1em;
-
   background-color: $emp-color;
 
   button {
