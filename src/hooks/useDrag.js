@@ -1,4 +1,5 @@
-import getRefCurrent from 'functions/getRefCurrent';
+import { useRef } from 'react';
+import getRefCurrent from '../functions/getRefCurrent';
 import useEventListener from './useEventListener';
 
 const useDrag = (
@@ -8,36 +9,45 @@ const useDrag = (
 
 ) => {
 
-  let dragable = false;
-  let offset = { x: 0, y: 0 };
-  let pos = { x: 0, y: 0 };
+  const dragable = useRef(false);
+  const offset = useRef({ x: 0, y: 0 });
+  const pos = useRef({ x: 0, y: 0 });
+
+  console.log(eventTarget)
 
   useEventListener(eventTarget, 'mousedown', (e) => {
     const movingElement = getRefCurrent(movingTarget);
-    dragable = true;
+    dragable.current = true;
 
-    pos = { x: e.clientX / scale.current, y: e.clientY / scale.current };
-    offset.x = movingElement.offsetLeft - pos.x;
-    offset.y = movingElement.offsetTop - pos.y;
-  }, true);
+    pos.current = {
+      x: e.clientX / scale.current,
+      y: e.clientY / scale.current
+    };
+
+    offset.current = {
+      x: movingElement.offsetLeft - pos.current.x,
+      y: movingElement.offsetTop - pos.current.y
+    };
+  });
 
   useEventListener(document, 'mouseup', () => {
-    dragable = false;
-  }, true);
+    dragable.current = false;
+  });
 
   useEventListener(document, 'mousemove', (e) => {
-    e.preventDefault();
-    dragable && setPos(e);
-  }, true);
-
-  const setPos = (e) => {
     const movingElement = getRefCurrent(movingTarget);
+    e.preventDefault();
 
-    pos = { x: e.clientX / scale.current, y: e.clientY / scale.current };
+    if (dragable.current) {
+      pos.current = {
+        x: e.clientX / scale.current,
+        y: e.clientY / scale.current
+      };
 
-    movingElement.style.left = pos.x + offset.x + 'px';
-    movingElement.style.top = pos.y + offset.y + 'px';
-  };
+      movingElement.style.left = pos.current.x + offset.current.x + 'px';
+      movingElement.style.top = pos.current.y + offset.current.y + 'px';
+    }
+  });
 };
 
 export default useDrag;

@@ -12,33 +12,37 @@ const useZoom = (
   } = {}
 
 ) => {
-  const scale = useRef(1);
 
-  let pointer = { x: 0, y: 0 };
-  let target = { x: 0, y: 0 };
-  let pos = { x: 0, y: 0 };
+  const scale = useRef(1);
+  const pointer = useRef({ x: 0, y: 0 });
+  const target = useRef({ x: 0, y: 0 });
+  const pos = useRef({ x: 0, y: 0 });
 
   useEventListener(eventTarget, 'wheel', (e) => {
     const movingElement = getRefCurrent(movingTarget);
+    
+    pointer.current = {
+      x: e.clientX - movingElement.offsetLeft,
+      y: e.clientY - movingElement.offsetTop
+    };
 
-    pointer.x = e.clientX - movingElement.offsetLeft;
-    pointer.y = e.clientY - movingElement.offsetTop;
-
-    target.x = (pointer.x - pos.x) / scale.current;
-    target.y = (pointer.y - pos.y) / scale.current;
+    target.current = {
+      x: (pointer.current.x - pos.current.x) / scale.current,
+      y: (pointer.current.y - pos.current.y) / scale.current
+    };
 
     scale.current = clamp(
       scale.current + Math.sign(e.deltaY) * -zoomSpeed,
       minScale, maxScale
     );
 
-    pos.x = -target.x * scale.current + pointer.x;
-    pos.y = -target.y * scale.current + pointer.y;
-
-    console.log(scale.current)
+    pos.current = {
+      x: -target.current.x * scale.current + pointer.current.x,
+      y: -target.current.y * scale.current + pointer.current.y
+    };
 
     movingElement.style.transform = `
-      translate(${pos.x}px, ${pos.y}px) 
+      translate(${pos.current.x}px, ${pos.current.y}px) 
       scale(${scale.current})
     `;
   }, true);
