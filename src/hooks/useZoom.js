@@ -1,5 +1,5 @@
 import useEventListener from 'hooks/useEventListener';
-import getElement from 'functions/getElement';
+import getRefCurrent from 'functions/getRefCurrent';
 import clamp from 'functions/clamp';
 import { useRef } from 'react';
 
@@ -19,7 +19,7 @@ const useZoom = (
   let pos = { x: 0, y: 0 };
 
   useEventListener(eventTarget, 'wheel', (e) => {
-    const movingElement = getElement(movingTarget);
+    const movingElement = getRefCurrent(movingTarget);
 
     pointer.x = e.clientX - movingElement.offsetLeft;
     pointer.y = e.clientY - movingElement.offsetTop;

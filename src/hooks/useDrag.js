@@ -1,4 +1,4 @@
-import getElement from 'functions/getElement';
+import getRefCurrent from 'functions/getRefCurrent';
 import useEventListener from './useEventListener';
 
 const useDrag = (
@@ -13,7 +13,7 @@ const useDrag = (
   let pos = { x: 0, y: 0 };
 
   useEventListener(eventTarget, 'mousedown', (e) => {
-    const movingElement = getElement(movingTarget);
+    const movingElement = getRefCurrent(movingTarget);
     dragable = true;
 
     pos = { x: e.clientX / scale.current, y: e.clientY / scale.current };
@@ -31,7 +31,7 @@ const useDrag = (
   }, true);
 
   const setPos = (e) => {
-    const movingElement = getElement(movingTarget);
+    const movingElement = getRefCurrent(movingTarget);
 
     pos = { x: e.clientX / scale.current, y: e.clientY / scale.current };
 

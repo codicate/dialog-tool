@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import getElement from 'functions/getElement';
+import getRefCurrent from 'functions/getRefCurrent';
 
 const useEventListener = (eventTarget, eventType, handler, options = {}) => {
   const savedHandler = useRef();
@@ -9,7 +9,7 @@ const useEventListener = (eventTarget, eventType, handler, options = {}) => {
   }, [handler]);
 
   useEffect(() => {
-    const element = getElement(eventTarget);
+    const element = getRefCurrent(eventTarget);
     if (!element || !element.addEventListener) return;
 
     const listener = (event) => savedHandler.current(event);
