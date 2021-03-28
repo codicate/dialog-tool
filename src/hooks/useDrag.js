@@ -13,9 +13,9 @@ const useDrag = (
   const offset = useRef({ x: 0, y: 0 });
   const pos = useRef({ x: 0, y: 0 });
 
-  console.log(eventTarget)
-
   useEventListener(eventTarget, 'mousedown', (e) => {
+    e.stopPropagation();
+
     const movingElement = getRefCurrent(movingTarget);
     dragable.current = true;
 
@@ -35,8 +35,9 @@ const useDrag = (
   });
 
   useEventListener(document, 'mousemove', (e) => {
-    const movingElement = getRefCurrent(movingTarget);
     e.preventDefault();
+
+    const movingElement = getRefCurrent(movingTarget);
 
     if (dragable.current) {
       pos.current = {
