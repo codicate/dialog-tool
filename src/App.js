@@ -17,15 +17,17 @@ function App() {
   return (
     <>
       <div id='canvas' ref={canvas}>
-        {dialogDict.map((dialog) => (
-          <Card
-            key={dialog.id}
-            content={dialog.choice || dialog.msg}
+        {
+          dialogDict.map((dialog) => (
+            <Card
+              key={dialog.id}
+              content={dialog.choice || dialog.msg}
 
-            scale={scale}
-            highestZ={highestZ}
-          />
-        ))}
+              scale={scale}
+              highestZ={highestZ}
+            />
+          ))
+        }
       </div>
     </>
   );

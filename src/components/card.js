@@ -8,7 +8,7 @@ export default function Card({ content, scale, highestZ }) {
 
   return (
     <div className='card' ref={card}
-      onMouseOver={() => {
+      onMouseEnter={() => {
         if (card.current.style.zIndex !== highestZ.current.toString()) {
           highestZ.current++;
           card.current.style.zIndex = highestZ.current;
