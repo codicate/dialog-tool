@@ -11,23 +11,29 @@ function App() {
   const scale = useZoom(document.body, canvas);
   useDrag(document.body, canvas);
 
+  const highestZ = useRef(0)
+
   return (
     <>
       <div id='canvas' ref={canvas}>
         <Dialog
           scale={scale}
+          highestZ={highestZ}
           type='response'
         />
         <Dialog
           scale={scale}
+          highestZ={highestZ}
           type='response'
         />
         <Dialog
           scale={scale}
+          highestZ={highestZ}
           type='response'
         />
         <Dialog
           scale={scale}
+          highestZ={highestZ}
           type='response'
         />
       </div>

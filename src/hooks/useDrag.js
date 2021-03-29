@@ -5,7 +5,8 @@ import useEventListener from 'hooks/useEventListener';
 const useDrag = (
   eventTarget,
   movingTarget = eventTarget,
-  scale = { current: 1 }
+  scale = { current: 1 },
+  mousedownCallback = () => { }
 
 ) => {
 
@@ -14,6 +15,8 @@ const useDrag = (
   const pos = useRef({ x: 0, y: 0 });
 
   useEventListener(eventTarget, 'mousedown', (e) => {
+    mousedownCallback();
+
     e.stopPropagation();
     dragable.current = true;
 
