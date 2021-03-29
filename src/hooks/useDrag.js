@@ -26,8 +26,8 @@ const useDrag = (
     };
 
     offset.current = {
-      x: movingElement.offsetLeft - pos.current.x,
-      y: movingElement.offsetTop - pos.current.y
+      x: pos.current.x - movingElement.offsetLeft,
+      y: pos.current.y - movingElement.offsetTop
     };
   });
 
@@ -46,8 +46,8 @@ const useDrag = (
         y: e.clientY / scale.current
       };
 
-      movingElement.style.left = pos.current.x + offset.current.x + 'px';
-      movingElement.style.top = pos.current.y + offset.current.y + 'px';
+      movingElement.style.left = pos.current.x - offset.current.x + 'px';
+      movingElement.style.top = pos.current.y - offset.current.y + 'px';
     }
   });
 };
