@@ -5,6 +5,7 @@ import dialogDict from 'documents/dialogDict';
 import useZoom from 'hooks/useZoom';
 import useDrag from 'hooks/useDrag';
 
+import Nav from 'components/Nav';
 import Card from 'components/Card';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           ))
         }
       </div>
+      <Nav />
     </>
   );
 }
