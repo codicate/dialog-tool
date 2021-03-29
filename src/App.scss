@@ -1,10 +1,11 @@
 $bg-color: hsl(220, 43%, 4%);
 $emp-color: hsl(216, 28%, 7%);
+$txt-color: hsl(210, 17%, 82%);
+
 $btn-color: hsl(215, 15%, 15%);
 $btn-hover-color: hsl(212, 12%, 21%);
 $border-color: hsl(212, 12%, 21%);
 $border-hover-color: hsl(212, 9%, 58%);
-$txt-color: hsl(210, 17%, 82%);
 
 body {
   height: 100vh;
@@ -73,12 +74,9 @@ button {
 
 .card {
   position: absolute;
+
   user-select: none;
   cursor: grab;
-
-  &:hover {
-    box-shadow: 0 0 0 0.25em $border-hover-color;
-  }
 
   &:active {
     cursor: grabbing;
@@ -86,6 +84,7 @@ button {
 }
 
 .dialog {
+  position: relative;
   overflow: hidden;
 
   display: flex;
@@ -108,6 +107,10 @@ button {
 
   &.response {
     background-color: hsl(210, 40%, 10%);
+
+    &:hover {
+      box-shadow: 0 0 0 0.25em $border-hover-color;
+    }
   }
 
   &.reply {
@@ -115,7 +118,7 @@ button {
   }
 }
 
-.reply-panel {
+.replyPanel {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -128,6 +131,10 @@ button {
   border: 1px solid $border-color;
   background-color: fade-out($bg-color, 0.2);
 
+  &:hover {
+    box-shadow: 0 0 0 0.25em $border-hover-color;
+  }
+
   .dialog {
     width: 20em;
   }
@@ -137,7 +144,7 @@ button {
   }
 }
 
-#card-control {
+#cardControl {
   position: absolute;
   top: 0;
   right: 0;
@@ -148,8 +155,8 @@ button {
   border-radius: inherit;
 
   button {
-    border: none;
     border-radius: 0;
+    border: none;
 
     &#delete:hover,
     &#delete:focus {
@@ -162,28 +169,29 @@ button {
   }
 }
 
-#dialog-edit {
+#dialogEdit {
   width: 100%;
 
   resize: none;
   overflow-y: hidden;
+
   color: inherit;
-  background-color: inherit;
   border: none;
+  background-color: inherit;
 }
 
-#bottom-nav {
+#bottomNav {
   position: fixed;
   bottom: 0;
   left: 0;
-
-  width: 100%;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  width: 100%;
   padding: 1em;
+
   background-color: $emp-color;
 
   button {
