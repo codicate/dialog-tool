@@ -21,7 +21,6 @@ const useDrag = (
     dragable.current = true;
 
     const movingElement = getRefCurrent(movingTarget);
-    movingElement.style.zIndex = movingElement.style.zIndex + 1;
 
     pos.current = {
       x: e.clientX / scale.current,

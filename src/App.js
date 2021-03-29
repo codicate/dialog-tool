@@ -1,17 +1,19 @@
+import { useRef } from 'react';
 import 'App.scss';
 
-import Dialog from 'components/Dialog';
-// import Card from 'components/Card';
-import {useRef } from 'react';
+import dialogDict from 'documents/dialog';
 import useZoom from 'hooks/useZoom';
 import useDrag from 'hooks/useDrag';
+
+import Dialog from 'components/Dialog';
+import Card from 'components/Card';
 
 function App() {
   const canvas = useRef(null);
   const scale = useZoom(document.body, canvas);
   useDrag(document.body, canvas);
 
-  const highestZ = useRef(0)
+  const highestZ = useRef(1);
 
   return (
     <>
@@ -19,7 +21,7 @@ function App() {
         <Dialog
           scale={scale}
           highestZ={highestZ}
-          type='response'
+          type='reply'
         />
         <Dialog
           scale={scale}
